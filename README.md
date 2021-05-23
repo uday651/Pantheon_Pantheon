@@ -1,4 +1,4 @@
-# Pantheon_Pantheon
+# Pantheon_Problem statement 2
 API_Test
 
 Import ProblemStatement2.postman_collection.json file to POSTMAN tool and click on send button
