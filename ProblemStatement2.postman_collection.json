@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "86d197ba-754e-4482-9397-0796082afccc",
+		"name": "ProblemStatement2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API DarkSky",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"schema = {\r",
+							"   \"$schema\":\"http://json-schema.org/draft-07/schema\",\r",
+							"   \"type\":\"object\",\r",
+							"   \"properties\":{\r",
+							"      \"latitude\":{\r",
+							"         \"$id\":\"#/properties/latitude\",\r",
+							"         \"type\":\"number\"\r",
+							"      },\r",
+							"      \"longitude\":{\r",
+							"         \"$id\":\"#/properties/longitude\",\r",
+							"         \"type\":\"number\"\r",
+							"      },\r",
+							"      \"timezone\":{\r",
+							"         \"$id\":\"#/properties/timezone\",\r",
+							"         \"type\":\"string\"\r",
+							"      },\r",
+							"      \"currently\":{\r",
+							"         \"$id\":\"#/properties/currently\",\r",
+							"         \"type\":\"object\"\r",
+							"      },\r",
+							"      \"minutely\":{\r",
+							"         \"$id\":\"#/properties/minutely\",\r",
+							"         \"type\":\"object\"\r",
+							"      },\r",
+							"      \"hourly\":{\r",
+							"         \"$id\":\"#/properties/hourly\",\r",
+							"         \"type\":\"object\"\r",
+							"      },\r",
+							"      \"daily\":{\r",
+							"         \"$id\":\"#/properties/daily\",\r",
+							"         \"type\":\"object\"\r",
+							"      },\r",
+							"      \"flags\":{\r",
+							"         \"$id\":\"#/properties/flags\",\r",
+							"         \"type\":\"object\"\r",
+							"      },\r",
+							"      \"offset\":{\r",
+							"         \"$id\":\"#/properties/offset\",\r",
+							"         \"type\":\"integer\"\r",
+							"      }\r",
+							"   },\r",
+							"   \"required\":[\r",
+							"      \"latitude\",\r",
+							"      \"longitude\",\r",
+							"      \"timezone\",\r",
+							"      \"currently\",\r",
+							"      \"minutely\",\r",
+							"      \"hourly\",\r",
+							"      \"daily\",\r",
+							"      \"flags\",\r",
+							"      \"offset\"\r",
+							"   ]\r",
+							"}\r",
+							"pm.test(\"Validate schema\", () => {\r",
+							"            pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"var data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Minutely data has 61 items\", () => {\r",
+							"    pm.expect(Object.keys(data.minutely.data).length).to.eql(61);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Hourly data has 49 items\", () => {\r",
+							"    pm.expect(Object.keys(data.hourly.data).length).to.eql(49);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Daily data has 8 items\", () => {\r",
+							"    pm.expect(Object.keys(data.daily.data).length).to.eql(8);\r",
+							"});\r",
+							"\r",
+							"//Additional test cases\r",
+							"pm.test(\"Currently data has 19 items\", () => {\r",
+							"    pm.expect(Object.keys(data.currently).length).to.eql(19);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api.darksky.net/forecast/6508dfe23c140cf146a5ad4c2b233282/40.7127,-74.0059",
+					"protocol": "https",
+					"host": [
+						"api",
+						"darksky",
+						"net"
+					],
+					"path": [
+						"forecast",
+						"6508dfe23c140cf146a5ad4c2b233282",
+						"40.7127,-74.0059"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
